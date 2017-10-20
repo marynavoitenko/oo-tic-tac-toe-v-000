@@ -69,4 +69,38 @@ def current_player
   return turn_count.even? ? "X" : "O"
 end
 
+def won?
+  WIN_COMBINATIONS.each do |win_combination|
+
+    win_index_1 = win_combination[0]
+    win_index_2 = win_combination[1]
+    win_index_3 = win_combination[2]
+
+    position_1 = board[win_index_1]
+    position_2 = board[win_index_2]
+    position_3 = board[win_index_3]
+
+    if (position_1 == "X" && position_2 == "X" && position_3 == "X") || (position_1 == "O" && position_2 == "O" && position_3 == "O")
+      return win_combination
+    end
+  end
+  return false
+end
+
+def full?
+  i = 0
+  while i < 9 do
+    if !position_taken?(i)
+      return false
+    else
+      i += 1
+    end
+  end
+  return true
+end
+
+def draw?
+  !(won?) && full?
+end
+
 end
