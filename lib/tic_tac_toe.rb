@@ -103,4 +103,18 @@ def draw?
   !(won?) && full?
 end
 
+def over?
+  won? || draw? || full?
+
+end
+
+def winner
+  if won?
+    win_combination = won?
+    return @board[win_combination.first]
+  else
+    return nil
+  end
+end
+
 end
